@@ -45,7 +45,8 @@ module Twitter
       
       def make_friendly(response)
         raise_errors(response)
-        mash(parse(response))
+        parsed = parse(response)
+        parsed.is_a?Hash ? mash(parsed) : parsed
       end
       
       def raise_errors(response)
