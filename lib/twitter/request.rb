@@ -45,8 +45,7 @@ module Twitter
       
       def make_friendly(response)
         raise_errors(response)
-        parsed = parse(response)
-        parsed.is_a?Hash ? mash(parsed) : parsed
+        mash(parse(response))
       end
       
       def raise_errors(response)
@@ -75,7 +74,7 @@ module Twitter
       
       def mash(obj)
         if obj.is_a?(Array)
-          obj.map { |item| make_mash_with_consistent_hash(item) }
+          obj
         elsif obj.is_a?(Hash)
           make_mash_with_consistent_hash(obj)
         else
